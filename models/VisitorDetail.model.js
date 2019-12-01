@@ -3,13 +3,14 @@ const Schema = mongoose.Schema;
 
 let VisitorDetailSchema = new Schema ({
     Name:{type: String, required: true, max: 100},
-    Phone:{type: Number, required: true, max: 100},
+    Phone:{type: Number, required: true},
     Email:{type:String ,require :true},
+    Address:{type:String ,require :true},
 
     HostId :{type: Schema.Types.ObjectId, ref: 'HostDetail', required: true,index:true},
     CheckInTime:{type:Date},
-    CheckOutTime : {type : Date},
-    MeetingDone : {Type:Boolean}
+    CheckOutTime : {type : Date, default:null},
+    
     
 });
 
@@ -20,4 +21,4 @@ VisitorDetailSchema
 });
 
 //Expoting the model
-module.exports = mongoose.model('VisitorDetailSchema', VisitorDetailSchema);
+module.exports = mongoose.model('VisitorDetail', VisitorDetailSchema);

@@ -15,6 +15,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
       <!-- CSS Files -->
       <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+      <script src="function.js"></script>
      
      
    </head>
@@ -93,6 +94,7 @@
                               <!-- forum body -->
                               <div class="col-md-12">
                                     <h2>Host Details</h2>
+                                    <form>
                                     <div class="card">
                                        
                                        <div class="card-body">
@@ -101,7 +103,7 @@
                                            <div class="col-md-12">
                                              <div class="form-group">
                                                <label class="bmd-label-floating">Name</label>
-                                               <input type="text" class="form-control">
+                                               <input type="text" id="hname" class="form-control" required>
                                              </div>
                                            </div>
                                          </div>
@@ -110,7 +112,7 @@
                                            <div class="col-md-12">
                                              <div class="form-group">
                                                <label class="bmd-label-floating">Email</label>
-                                               <input type="text" class="form-control">
+                                               <input type="email" id="hemail" class="form-control" required>
                                              </div>
                                            </div>
                                          </div>
@@ -119,7 +121,7 @@
                                              <div class="col-md-12">
                                                <div class="form-group">
                                                  <label class="bmd-label-floating">Phone</label>
-                                                 <input type="text" class="form-control">
+                                                 <input type="text" id="hphone" class="form-control" required>
                                                </div>
                                              </div>
                                            </div>
@@ -128,16 +130,18 @@
                                                 <div class="col-md-12">
                                                   <div class="form-group">
                                                     <label class="bmd-label-floating">Address</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" id="hadd" class="form-control" required>
                                                   </div>
                                                 </div>
                                               </div>
                       
                                        </div>
                       
-                                       <button type="submit" class="btn btn-primary pull-right">Submit Details</button>
+                                       
                                        <div class="clearfix"></div>
                                     </div>
+                                 </form>
+                                    <button type="submit" onclick="addhost()" class="btn btn-primary pull-right">Submit Details</button>
             </div>
                               
                           

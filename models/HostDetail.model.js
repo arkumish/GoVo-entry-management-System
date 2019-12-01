@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let HostDetailSchema = new Schema ({
     Name:{type: String, required: true, max: 100},
-    Phone:{type: Number, required: true, max: 100},
+    Phone:{type: Number, required: true},
     Email:{type:String ,require :true},
     Address:{type:String ,require :true},
 
@@ -16,4 +16,4 @@ HostDetailSchema
 });
 
 //Expoting the model
-module.exports = mongoose.model('HostDetailSchema', HostDetailSchema);
+module.exports = mongoose.model('HostDetail', HostDetailSchema);
