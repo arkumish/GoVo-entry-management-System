@@ -24,7 +24,7 @@ exports.SendEmail = function( req,res){
     let mailOptions = {
         from: process.env.EMAIL, // TODO: email sender
         to: tosend, // TODO: email receiver
-        subject: 'Checkout Successfull',
+        subject: 'GoVo Visiting Mail alert',
         text: mssg
     };
     
