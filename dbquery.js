@@ -54,7 +54,12 @@ exports.CheckIn = function(req,res){
         if(visitorinfo){
         VisitorDetail.findByIdAndUpdate(visitorinfo._id,{'CheckOutTime' : new Date() },{new: true},(err, todo) => {
             if (err) return res.status(500).send(err);
-                return res.send("User Check Out ");
+            var success = {
+                outcome : "Checkout Successfull",
+                vdetail : visitorinfo,
+                done : 1,
+            }
+                return res.send(success);
             })   
         }else{
             res.send("User not found")

@@ -4,6 +4,10 @@ var ID = function(elementId) {
 
 function checkin(){
     
+    var sendemail = 1;
+    var sendsms = 0;
+
+    console.log(' i am here ');
     var obj = {
        Name : ID('vsname').value,
        Phone : ID('vsphone').value,
@@ -17,12 +21,36 @@ function checkin(){
 console.log(obj);
     $.post("/CheckIn",obj, function(data, status){
         alert("Data: " + data.outcome );
+         console.log(data);
+        if(data.done && sendemail == 1 ){
 
-        if(data.done === 1 ){
-            obj.hostphone = data.hostphone;
-             $.post("/sendsms",obj,function(info,status){
-                   alert(info)
-             });
+        var mssg = "Someone wants to meet you" + "\nName : " + obj.Name +"\nEmail : " + obj.Email + "\nPhone : " + obj.Phone + "\nCheckIn : " + obj.CheckInTime;
+
+        
+            var body = {
+                tosend : obj.hostemail,
+                message : mssg        
+             }
+
+                console.log(mssg,body);
+                    
+                $.post("/sendemail",{tosend : obj.hostemail,
+                        message : mssg},function(info,status2){
+                           alert(info);
+                      //condition to control sending sms
+                    if(sendsms == 1){
+                           $.post("/sendsms",{tosend : data.hostphone,
+                            message : mssg},function(infoq,statusq){
+                               if(status == 200 )
+                               alert("SMS Send Successfully");
+                        }) }
+                    //  });
+
+            })
+
+            
+            
+             
         }
 
       });
@@ -40,6 +68,21 @@ function checkout(){
 console.log(obj);
     $.post("/CheckOut",obj, function(data, status){
         alert("Data: " + data );
+ if(data.done){
+
+    var mssg = "Check Out Sucessfull \n Your Details : " + "\nName : " + data.vdetail.Name +"\nEmail : " + data.vdetail.Email + "\n Phone : " + data.vdetail.Phone + "\n CheckIn : " + data.vdetail.CheckIn + "\n CheckOut : " + data.vdetail.CheckOut;
+
+
+        $.post("/sendemail",{tosend : data.email,
+            message : mssg},function(info,status2){
+               alert(info);
+        });
+              
+            }
+
+})
+
+
       });
 
 }
